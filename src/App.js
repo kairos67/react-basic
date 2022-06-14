@@ -1,32 +1,29 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 function App() {
-  const [text, setText] = useState('Hello, world');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const onSubmit = ()=>{
-    alert('onSubmited');
+  const onSubmit = (event) => {
+    //여기서 username, password를 DB서버에서 조회하여 로그인체크함.
+    event.preventDefault();
+    console.log(username,password)
   };
-  const onKeyUp = (event)=>{
-    if(event.keyCode ===13){
-      onSubmit();
-    }
-    console.log('onKeyUp');
-  }
 
-  //let text = 'Hello';
-  const updateText = ()=>{
-    //text = 'Kairos';
-    setText('Kairos');
-  }
   return (
     <div className="App">
-      <h1>Kairos Coder</h1>
-            <input onKeyUp={onKeyUp} onSubmit={onSubmit}/>
-      <button onClick={onSubmit}>Submit</button>
-      <br /> <br /> 
+      <form onSubmit={onSubmit}>
+        <input
+          placeholder='Username'
+          value={username}
+          onChange={(e) => setUsername(e.target.value)} /><br />
+        <input
+          placeholder='Password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)} /><br />
 
-      <span>{text}</span>
-      <button onClick={updateText}>Update</button>  
+        <button type="submit" >Login</button>
+      </form>
     </div>
   );
 }
