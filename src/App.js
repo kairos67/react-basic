@@ -1,29 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function App() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const onSubmit = (event) => {
-    //여기서 username, password를 DB서버에서 조회하여 로그인체크함.
-    event.preventDefault();
-    console.log(username,password)
-  };
-
+  const [count, setCount] = useState(0);
+  const [kairos, setKairos] = useState(0);
+  useEffect(() => {
+    console.log(count)    
+  },[count,kairos]);
+  
+  const increment = () => {
+    setCount(count+1);
+  }
   return (
     <div className="App">
-      <form onSubmit={onSubmit}>
-        <input
-          placeholder='Username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)} /><br />
-        <input
-          placeholder='Password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)} /><br />
-
-        <button type="submit" >Login</button>
-      </form>
+      <h1>Kairos Coder</h1>
+      <button onClick={increment}>Increment</button>
+      <button onClick={() => setKairos(kairos+1)}>Increment1</button>
     </div>
   );
 }
