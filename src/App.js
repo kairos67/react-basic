@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import Counter from './components/Counter';
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [kairos, setKairos] = useState(0);
-  useEffect(() => {
-    console.log(count)    
-  },[count,kairos]);
-  
-  const increment = () => {
-    setCount(count+1);
-  }
+  const [condition, setCondition] = useState(false);
+  const toggle = () => setCondition(!condition);
+  const renderCondition = condition
+    ? 'True' : 'False';
   return (
     <div className="App">
       <h1>Kairos Coder</h1>
-      <button onClick={increment}>Increment</button>
-      <button onClick={() => setKairos(kairos+1)}>Increment1</button>
+      <Counter click="click1" />
+      <Counter />
+      <div>{renderCondition}</div>
+
+      <button onClick={toggle}>Toggle</button>
     </div>
   );
 }
