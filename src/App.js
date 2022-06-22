@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
-import Counter from './components/Counter';
 
 function App() {
-  const [condition, setCondition] = useState(false);
-  const toggle = () => setCondition(!condition);
-  const renderCondition = condition
-    ? 'True' : 'False';
+  const movies = [
+    { title: 'kairos 1', year: 2001 },
+    { title: 'kairos 2', year: 2002 },
+    { title: 'kairos 3', year: 2003 },
+  ];
+  const renderMovies = movies.map(m => {
+    return(
+      <div className="movie" key={m.title}>
+      <div className="movie-title">{m.title}</div>
+      <div className="movie-year">{m.year}</div>
+    </div>
+      );
+    });
   return (
     <div className="App">
-      <h1>Kairos Coder</h1>
-      <Counter click="click1" />
-      <Counter />
-      <div>{renderCondition}</div>
-
-      <button onClick={toggle}>Toggle</button>
+      <h1>Movie list</h1>
+      {renderMovies}
     </div>
   );
 }
