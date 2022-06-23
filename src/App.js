@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Movie from './components/Movie';
 
 function App() {
   const movies = [
@@ -6,14 +7,11 @@ function App() {
     { title: 'kairos 2', year: 2002 },
     { title: 'kairos 3', year: 2003 },
   ];
-  const renderMovies = movies.map(m => {
-    return(
-      <div className="movie" key={m.title}>
-      <div className="movie-title">{m.title}</div>
-      <div className="movie-year">{m.year}</div>
-    </div>
-      );
-    });
+  const renderMovies = movies.map(movie => {
+    return (
+      <Movie movie={movie} key={movie.title}/>
+    );
+  });
   return (
     <div className="App">
       <h1>Movie list</h1>
