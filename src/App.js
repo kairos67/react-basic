@@ -6,32 +6,39 @@ function App() {
   // const [movieTitle, setMovieTitle] = useState('');
   // const [movieYear, setMovieYear] = useState('');
   const [movies, setMovies] = useState([
-    { title: 'kairos 1', year: 2001 },
-    { title: 'kairos 2', year: 2002 },
-    { title: 'kairos 3', year: 2003 }
+    // { title: 'kairos 1', year: 2001 },
+    // { title: 'kairos 2', year: 2002 },
+    // { title: 'kairos 3', year: 2003 }
   ]);
-  // const movies = [
-  //   { title: 'kairos 1', year: 2001 },
-  //   { title: 'kairos 2', year: 2002 },
-  //   { title: 'kairos 3', year: 2003 },
-  // ];
-  const renderMovies = movies.map(movie => {
+  
+  const removeMovie = (id) =>{
+    // console.log(id);
+    setMovies(movies.filter(m => {
+      return m.id !== id;
+    }))
+  };
+
+  const renderMovies = movies.length ? movies.map(movie => {
     return (
-      <Movie movie={movie} key={movie.title} />
+      <Movie
+        movie={movie}
+        key={movie.id}
+        removeMovie={removeMovie}
+      />
     );
-  });
+  }) : '추가된 영화가 없습니다.';
   const addMovie = (movie) => {
-        // console.log(movieTitle,movieYear);
+    // console.log(movieTitle,movieYear);
     setMovies([
       ...movies, //기존값을 유지
-      movie  
-    ]);    
+      movie
+    ]);
   };
 
   return (
     <div className="App">
       <h1>Movie list</h1>
-      < MovieForm addMovie={addMovie}/>
+      < MovieForm addMovie={addMovie} />
       {renderMovies}
     </div>
   );
