@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import Movie from './components/Movie';
 import MovieForm from './components/MovieForms';
+import Navbar from './components/Navbar';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from 'react-router-dom';
 
 function App() {
   // const [movieTitle, setMovieTitle] = useState('');
@@ -10,8 +16,8 @@ function App() {
     // { title: 'kairos 2', year: 2002 },
     // { title: 'kairos 3', year: 2003 }
   ]);
-  
-  const removeMovie = (id) =>{
+
+  const removeMovie = (id) => {
     // console.log(id);
     setMovies(movies.filter(m => {
       return m.id !== id;
@@ -36,12 +42,47 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Movie list</h1>
-      < MovieForm addMovie={addMovie} />
-      {renderMovies}
-    </div>
+    // <div className="App">
+    //   <h1>Movie list</h1>       
+    //    < MovieForm addMovie={addMovie} />
+    //   {renderMovies}
+    // </div>
+
+    <BrowserRouter>
+      <div className="App">
+        <Navbar />
+        <Routes>
+          <Route
+            path="/movies"
+            element={
+              <div>
+                <h1>Movie list</h1>
+                < MovieForm addMovie={addMovie} />
+                {renderMovies}
+              </div>
+            }
+          />
+
+
+          <Route
+            exact path="/"
+            element={
+              <h1>Home</h1>
+            }
+          />
+
+          <Route
+            path="/users"
+            element={
+              <h1>Users</h1>
+            }
+          />
+        </Routes>
+
+      </div>
+    </BrowserRouter >
+
   );
-}
+};
 
 export default App;
