@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Movie from './components/Movie';
-import MovieForm from './components/MovieForms';
+import Movie from '../components/Movie';
+import MovieForm from '../components/MovieForms';
 
 const Movies = () => {
      // const [movieTitle, setMovieTitle] = useState('');
